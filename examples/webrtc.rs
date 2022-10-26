@@ -34,7 +34,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     loop {
         match swarm.select_next_some().await {
             SwarmEvent::NewListenAddr { address, .. } => {
-                println!("Listening on {}/p2p/{}", address, local_peer_id)
+                println!("Listening on {}", address)
             }
             SwarmEvent::Behaviour(event) => match event {
                 RequestResponseEvent::Message {
