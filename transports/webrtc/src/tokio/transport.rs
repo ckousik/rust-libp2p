@@ -80,6 +80,15 @@ impl Transport {
             listeners: SelectAll::new(),
         }
     }
+
+    pub fn gen_ceritificate() -> RTCCertificate {
+        use rand::distributions::DistString;
+        let mut params = rcgen::CertificateParams::new(vec![
+            rand::distributions::Alphanumeric.sample_string(&mut rand::thread_rng(), 16)
+        ]);
+        params.alg = &rcgen::PKCS_ECDSA_P256_SHA256;
+        RTCCertificate::from_params(params).expect("default params to work")
+    }
 }
 
 impl libp2p_core::Transport for Transport {

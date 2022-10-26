@@ -128,6 +128,7 @@ impl AsyncRead for Substream {
                 let data = self.read_buffer.split_to(n);
                 buf[0..n].copy_from_slice(&data[..]);
 
+                println!("read: {:?}", &buf[0..n]);
                 return Poll::Ready(Ok(n));
             }
 
@@ -140,6 +141,7 @@ impl AsyncRead for Substream {
 
             match ready!(io_poll_next(io, cx))? {
                 Some((flag, message)) => {
+                    println!("read: {:?}", message);
                     if let Some(flag) = flag {
                         state.handle_inbound_flag(flag, read_buffer);
                     }

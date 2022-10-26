@@ -143,6 +143,7 @@ async-trait = "0.1"
 env_logger = "0.9.0"
 clap = { version = "4.0.13", features = ["derive"] }
 tokio = { version = "1.15", features = ["io-util", "io-std", "macros", "rt", "rt-multi-thread"] }
+rcgen = "0.9.3"
 
 [workspace]
 members = [
@@ -214,4 +215,8 @@ required-features = ["full"]
 
 [[example]]
 name = "distributed-key-value-store"
+required-features = ["full"]
+
+[[example]]
+name = "webrtc"
 required-features = ["full"]
